@@ -33,7 +33,8 @@ async function handleDetectProject({ output, state }) {
     const selectedItem = await vscode.window.showQuickPick(
       detection.containers.map((container) => ({
         label: container.name,
-        description: container.type === "workspace" ? ".xcworkspace" : ".xcodeproj",
+        description:
+          container.type === "workspace" ? ".xcworkspace" : ".xcodeproj",
         detail: container.fsPath,
         container,
       })),
@@ -44,7 +45,9 @@ async function handleDetectProject({ output, state }) {
     );
 
     if (!selectedItem) {
-      vscode.window.showInformationMessage("Xcode project selection cancelled.");
+      vscode.window.showInformationMessage(
+        "Xcode project selection cancelled.",
+      );
       return;
     }
 
