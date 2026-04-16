@@ -1,7 +1,9 @@
 const { detectCurrentXcodeProject } = require("../core/projectDetector");
 
-async function runInSimulator() {
-  const detection = await detectCurrentXcodeProject();
+async function runInSimulator({ state } = {}) {
+  const detection = await detectCurrentXcodeProject({
+    selectedContainerPath: state?.getSelectedContainerPath(),
+  });
 
   if (detection.error) {
     return {
