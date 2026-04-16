@@ -10,12 +10,14 @@
     "Other"
   ],
   "activationEvents": [],
-  "main": "./extension.js",
+  "main": "./src/main.js",
   "contributes": {
-    "commands": [{
-      "command": "swift-sim-runner.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "swift-sim-runner.helloWorld",
+        "title": "Hello World"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
