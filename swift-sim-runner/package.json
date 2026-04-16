@@ -1,7 +1,7 @@
 {
   "name": "swift-sim-runner",
   "displayName": "Swift Sim Runner",
-  "description": "Run your IOS apps easily from VSCode",
+  "description": "Run iOS Swift apps on Simulator from VS Code",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.116.0"
@@ -9,15 +9,102 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "workspaceContains:**/*.xcworkspace",
+    "workspaceContains:**/*.xcodeproj"
+  ],
   "main": "./src/main.js",
   "contributes": {
     "commands": [
       {
-        "command": "swift-sim-runner.helloWorld",
-        "title": "Hello World"
+        "command": "swift-sim-runner.runInSimulator",
+        "title": "Swift Sim Runner: Run in Simulator",
+        "category": "Swift Sim Runner",
+        "icon": "$(play)"
+      },
+      {
+        "command": "swift-sim-runner.detectProject",
+        "title": "Swift Sim Runner: Detect Project",
+        "category": "Swift Sim Runner",
+        "icon": "$(search)"
+      },
+      {
+        "command": "swift-sim-runner.selectSimulator",
+        "title": "Swift Sim Runner: Select Simulator",
+        "category": "Swift Sim Runner",
+        "icon": "$(device-mobile)"
+      },
+      {
+        "command": "swift-sim-runner.selectScheme",
+        "title": "Swift Sim Runner: Select Scheme",
+        "category": "Swift Sim Runner",
+        "icon": "$(list-selection)"
+      },
+      {
+        "command": "swift-sim-runner.showOutput",
+        "title": "Swift Sim Runner: Show Output",
+        "category": "Swift Sim Runner",
+        "icon": "$(output)"
+      },
+      {
+        "command": "swift-sim-runner.cleanDerivedData",
+        "title": "Swift Sim Runner: Clean Derived Data",
+        "category": "Swift Sim Runner",
+        "icon": "$(trash)"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Swift Sim Runner",
+      "properties": {
+        "swiftSimRunner.defaultScheme": {
+          "type": "string",
+          "default": "",
+          "description": "Default Xcode scheme to build and run. Leave empty to choose from a Quick Pick."
+        },
+        "swiftSimRunner.defaultSimulatorUdid": {
+          "type": "string",
+          "default": "",
+          "description": "Default iOS Simulator UDID. Leave empty to choose from available simulators."
+        },
+        "swiftSimRunner.derivedDataPath": {
+          "type": "string",
+          "default": ".swift-sim-runner/DerivedData",
+          "description": "DerivedData path used for xcodebuild output."
+        },
+        "swiftSimRunner.openSimulatorApp": {
+          "type": "boolean",
+          "default": true,
+          "description": "Open the Simulator app before launching the built app."
+        },
+        "swiftSimRunner.launchWithConsole": {
+          "type": "boolean",
+          "default": false,
+          "description": "Launch the app with simctl --console to stream basic console output."
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "swift-sim-runner.runInSimulator"
+        },
+        {
+          "command": "swift-sim-runner.detectProject"
+        },
+        {
+          "command": "swift-sim-runner.selectSimulator"
+        },
+        {
+          "command": "swift-sim-runner.selectScheme"
+        },
+        {
+          "command": "swift-sim-runner.showOutput"
+        },
+        {
+          "command": "swift-sim-runner.cleanDerivedData"
+        }
+      ]
+    }
   },
   "scripts": {
     "lint": "eslint .",
