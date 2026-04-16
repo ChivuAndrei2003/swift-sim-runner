@@ -43,7 +43,7 @@ async function findXcodeContainers(workspaceFolder) {
   ].sort(compareContainers);
 }
 
-async function detectCurrentXcodeProject() {
+async function detectCurrentXcodeProject(options = {}) {
   const workspaceFolder = getCurrentWorkspaceFolder();
 
   if (!workspaceFolder) {
@@ -56,7 +56,10 @@ async function detectCurrentXcodeProject() {
   }
 
   const containers = await findXcodeContainers(workspaceFolder);
-  const selectedContainer = containers.find((item) => item.type === 'workspace') ?? containers[0];
+  const selectedContainer =
+    containers.find((item) => item.fsPath === options.selectedContainerPath) ??
+    containers.find((item) => item.type === 'workspace') ??
+    containers[0];
 
   return {
     workspaceFolder: {

@@ -1,10 +1,19 @@
 const KEYS = {
+  selectedContainerPath: 'swiftSimRunner.selectedContainerPath',
   selectedScheme: 'swiftSimRunner.selectedScheme',
   selectedSimulatorUdid: 'swiftSimRunner.selectedSimulatorUdid',
 };
 
 function createWorkspaceState(context) {
   return {
+    getSelectedContainerPath() {
+      return context.workspaceState.get(KEYS.selectedContainerPath, '');
+    },
+
+    setSelectedContainerPath(containerPath) {
+      return context.workspaceState.update(KEYS.selectedContainerPath, containerPath);
+    },
+
     getSelectedScheme() {
       return context.workspaceState.get(KEYS.selectedScheme, '');
     },
